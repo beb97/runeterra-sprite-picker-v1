@@ -1,16 +1,18 @@
 https://www.reddit.com/r/LegendsOfRuneterra/comments/mgr3ul/updated_sprites_for_deck_names_patch_25/
 LordRedStone_Nr1
-
+<sprite=16>
 <sprite=16 color=#FF0000>
+<sprite name=Fury>
+
 Freljord, ShadowIsles, ChampLevelUpIcon2, Slow, epic
 Demacia, PiltoverZaun, ChampLevelUpIcon1, Fast, rare
 Bilgewater, Noxus, Shurima, Burst, common, champion
 Neutral, Ionia, Targon, ChampLevelUpIcon3, Focus, LandmarkVisualOnly, currency_bp, currency_shards
+
+"Freljord", "ShadowIsles", "ChampLevelUpIcon2", "Slow", "epic", "Demacia", "PiltoverZaun", "ChampLevelUpIcon1", "Fast", "rare", "Bilgewater", "Noxus", "Shurima", "Burst", "common", "champion", "Neutral", "Ionia", "Targon", "ChampLevelUpIcon3", "Focus", "LandmarkVisualOnly", "currency_bp", "currency_shards"
+
 or 
 index : 0....
 
 <sprite name=Fury>
-Barrier, DoubleStrike, Fleeting, Immobile, Regeneration, Vulnerable, Augment
-Aura, Deep, Fearsome, Imbue, Reckless, Tough, Fury, Spellshield
-Attune, Challenger, Ephemeral, GenericTrigger, QuickStrike, Strike, Silenced, Stunned
-AttackSkillMark, Capture, Elusive, Frostbite, LastBreath, Lifesteal, Overwhelm, PlaySkillMark
+"Barrier", "DoubleStrike", "Fleeting", "Immobile", "Regeneration", "Vulnerable", "Augment", "Aura", "Deep", "Fearsome", "Imbue", "Reckless", "Tough", "Fury", "Spellshield", "Attune", "Challenger", "Ephemeral", "GenericTrigger", "QuickStrike", "Strike", "Silenced", "Stunned", "AttackSkillMark", "Capture", "Elusive", "Frostbite", "LastBreath", "Lifesteal", "Overwhelm", "PlaySkillMark"

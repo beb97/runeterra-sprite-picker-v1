@@ -23,46 +23,51 @@
 </head>
 
 <body>
+<main>
 
-<!-- Add your site or application content here -->
-<p>Runeterra sprite picker</p>
-<!--<div id="sprite-preview"></div>-->
-<!--    <sprite=16 color=#FF0000>-->
-<!--    <sprite name=Fury>-->
-<pre>
-    &lt;sprite=16 color=#FF0000&gt;
-</pre>
-<table id="table-1">
-</table>
+    <div id="app">
+<!--        {{ message }}-->
+    </div>
 
-<!--<img class="full-grid" src="img/grid1.png">-->
+    <!-- Add your site or application content here -->
+    <div id="logo-container">
 
+    <img id="logo" src="logo-runeterra.png"/><h1>Runeterra sprite picker</h1>
+    </div>
+    <!--<div id="sprite-preview"></div>-->
+    <!--    <sprite=16 color=#FF0000>-->
+    <!--    <sprite name=Fury>-->
+    <div id="sprite-to-text-block">
+        <div> CURRENT SPRITE :
+            <span id="sprite-code-container"></span>
+        </div>
+        <button onclick="copyText()" value="copy code to clipboard">copy to clipboard</button>
+        <!--TEMPLATE SPRITE-->
+        <div id="sprite-container-anchor">
 
-<!--<p>-->
-<!--<ul>-->
-<!--  <li>Freljord, ShadowIsles, ChampLevelUpIcon2, Slow, epic</li>-->
-<!--  <li>Demacia, PiltoverZaun, ChampLevelUpIcon1, Fast, rare</li>-->
-<!--  <li>Bilgewater, Noxus, Shurima, Burst, common, champion</li>-->
-<!--  <li>Neutral, Ionia, Targon, ChampLevelUpIcon3, Focus, LandmarkVisualOnly, currency_bp, currency_shards</li>-->
-<!--</ul>-->
-<!--</p>-->
-<pre>
-    &lt;sprite name=Fury&gt;
-</pre>
+        </div>
+        <input type="color" id="color-picker" name="color"
+               value="#ffffff" onchange="updateColor()">
+        <button onclick="resetColor()">reset color</button>
 
-<table id="table-2">
-</table>
-<!--<img class="full-grid" src="img/grid2.png">-->
+        <div class="sprite-container invisible" id="sprite-container-template" onclick="chooseSprite(this)">
+            <div class="sprite-index"></div>
+            <div class="sprite" style="background: url(img/grid1.png) 0px 0px;"></div>
+            <div class="sprite-code">Freljord</div>
+        </div>
 
-<!--<p>-->
-<!--  <li>Barrier, DoubleStrike, Fleeting, Immobile, Regeneration, Vulnerable, Augment</li>-->
-<!--  <li>Aura, Deep, Fearsome, Imbue, Reckless, Tough, Fury, Spellshield</li>-->
-<!--  <li>Attune, Challenger, Ephemeral, GenericTrigger, QuickStrike, Strike, Silenced, Stunned</li>-->
-<!--  <li>AttackSkillMark, Capture, Elusive, Frostbite, LastBreath, Lifesteal, Overwhelm, PlaySkillMark</li>-->
-<!--</p>-->
+    </div>
 
+    <!--<img class="full-grid" src="img/grid1.png">-->
+    <div id="grid">
+    </div>
+    <!--<img class="full-grid" src="img/grid2.png">-->
+</main>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>-->
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
+<!--<script src="js/app.js"></script>-->
 <script src="js/main.js"></script>
 
 </body>
