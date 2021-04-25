@@ -24,51 +24,41 @@
 
 <body>
 <main>
-
-    <div id="app">
-        {{ message }}
-    </div>
-
-    <!-- Add your site or application content here -->
     <div id="logo-container">
-
-    <img id="logo" src="logo-runeterra.png"/><h1>Runeterra sprite picker</h1>
+        <img id="logo" src="logo-runeterra.png"/><h1>Runeterra sprite picker</h1>
     </div>
-    <!--<div id="sprite-preview"></div>-->
-    <!--    <sprite=16 color=#FF0000>-->
-    <!--    <sprite name=Fury>-->
-    <div id="sprite-to-text-block">
-        <div> CURRENT SPRITE :
-            <span id="sprite-code-container"></span>
-        </div>
-        <button onclick="copyText()" value="copy code to clipboard">copy to clipboard</button>
-        <!--TEMPLATE SPRITE-->
-        <div id="sprite-container-anchor">
+    <div id="app">
+        <div id="currentSpriteBlock" class="flex">
+            <div id="currentSpriteMask" class="card">
+                <sprite v-bind:sprite="currentSprite"></sprite>
+            </div>
 
-        </div>
-        <input type="color" id="color-picker" name="color"
-               value="#ffffff" onchange="updateColor()">
-        <button onclick="resetColor()">reset color</button>
-
-        <div class="sprite-container invisible" id="sprite-container-template" onclick="chooseSprite(this)">
-            <div class="sprite-index"></div>
-            <div class="sprite" style="background: url(img/grid1.png) 0px 0px;"></div>
-            <div class="sprite-code">Freljord</div>
+            <div id="sprite-to-text-block" class="card flex">
+                <div>Code : </div>
+                <h2>{{ getSpriteCode }}</h2>
+                <button @click="copyToClipBoard">copy to clipboard</button>
+            </div>
+            <div id="color-picker-container" class="card flex" title="Only the first 24 sprites can be colored.">
+                <div>💬</div>
+                <div t >{{currentColor}}</div>
+                <input type="color" v-model="currentColor"/>
+                <button @click="resetColor">reset color</button>
+            </div>
         </div>
 
+        <div id="grid">
+            <sprite v-for="sprite in sprites" v-bind:sprite="sprite" @spriteselected="selectSprite"></sprite>
+        </div>
+
     </div>
 
-    <!--<img class="full-grid" src="img/grid1.png">-->
-    <div id="grid">
-    </div>
-    <!--<img class="full-grid" src="img/grid2.png">-->
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://unpkg.com/vue@next"></script>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/app.js"></script>
-<script src="js/main.js"></script>
+<!--<script src="js/main.js"></script>-->
 
 </body>
 

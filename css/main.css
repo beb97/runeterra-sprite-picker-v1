@@ -63,12 +63,25 @@ textarea {
    ========================================================================== */
 body {
   background-color: #fafaee;
+  font-family: Inter,Roboto, sans-serif;
+}
+
+h1, h2, h3 {
+  margin: 0px;
+}
+
+#app {
+  /*background-color: #b3d4fc;*/
 }
 
 main {
   margin: auto;
   max-width: 1000px;
 }
+
+button {
+}
+
 #sprite-preview {
   /*Defines the portion of the image we want to use*/
   /*width: 128px;*/
@@ -77,21 +90,23 @@ main {
   background: url(../img/grid1.png) -128px -128px;
 }
 
-.invisible {
-  display: none !important;
-}
-
 .sprite {
   width: 128px;
   height: 128px;
   /*background-blend-mode: multiply;*/
-  background-color: red;
-  mix-blend-mode: multiply;
+  /*mix-blend-mode: multiply;*/
 
   background-image: url("../img/grid1.png");
   background-position-x: 0px;
   background-position-y: 0px;
 }
+
+.sprite-code {
+  max-width: 128px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .full-grid {
   width: 400px;
 }
@@ -119,23 +134,56 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
-#sprite-code-container {
+.card {
+  border-radius: 5px;
+  margin: 5px;
+  border: 2px grey solid;
+  box-shadow: 3px 3px #c1c6cf;
+  background-color: #fafadb;
+  opacity: 0.9;
+}
+
+.card:hover, .card:focus, card:active {
+  background-color: #E8C150;
+  border: 2px #b3d4fc solid;
+  box-shadow: 3px 3px grey;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+#currentSpriteBlock {
+  flex-direction: row;
+}
+
+#currentSpriteMask > .sprite-container > .sprite {
+  /*mix-blend-mode: multiply;*/
+}
+
+#currentSpriteBlock > div {
+  background-color: #E8C150;
+  height: 180px;
+  min-width: 150px;
+  flex-direction: column;
 }
 
 #sprite-to-text-block {
+  flex-direction: column;
+  width: 300px;
+  justify-content: space-evenly;
+}
+
+#color-picker-container {
+  justify-content: space-evenly;
+}
+
+.flex {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  font-family: "Roboto Light";
-  /*font-size:2em;*/
-  border: 1px solid grey;
   justify-content: center;
   align-items: center;
-}
-#sprite-to-text-color, #sprite-to-text-code {
-  color: red;
 }
 
 /* ==========================================================================

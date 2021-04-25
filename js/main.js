@@ -133,7 +133,7 @@ function getSpriteCode() {
     if(currentIndex<grid1realLength) {
         code = "sprite=" + currentIndex;
 
-        if(currentColor!== "#ffffff") {
+        if(currentColor!== "#ffffff" && currentColor!== null) {
             color = " color="+currentColor;
         }
 

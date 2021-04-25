@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Runeterra toolbox</title>
+    <meta name="description" content="runeterra tools">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<main>
+
+    <div id="app">
+
+        <p>Current sprite : {{currentSprite.code}}</p>
+        <input type="text" v-model="currentSprite.code"/>
+        <p v-bind:title="bonus">Current color : {{currentColor}}</p>
+        <input type="color" v-model="currentColor"/>
+
+        <div v-for="sprite in sprites" :key="sprite.index">
+            <div v-if="isVisible()">{{sprite.code}}</div>
+        </div>
+        <button @click="toogleVisibility">toogle visibility</button>
+
+        <sprite id="grid" v-for="sprite in sprites" v-bind:sprite="sprite" @spriteselected="selectSprite"></sprite>
+
+
+    </div>
+
+    <!-- Add your site or application content here -->
+    <div id="logo-container">
+
+    <img id="logo" src="logo-runeterra.png"/><h1>Runeterra sprite picker</h1>
+    </div>
+    <!--<div id="sprite-preview"></div>-->
+    <!--    <sprite=16 color=#FF0000>-->
+    <!--    <sprite name=Fury>-->
+    <div id="sprite-to-text-block">
+        <div> CURRENT SPRITE :
+            <span id="sprite-code-container"></span>
+        </div>
+        <button onclick="copyText()" value="copy code to clipboard">copy sprite to clipboard</button>
+        <!--TEMPLATE SPRITE-->
+        <div id="sprite-container-anchor">
+
+        </div>
+        <input type="color" id="color-picker" name="color"
+               value="#ffffff" onchange="updateColor()">
+        <button onclick="resetColor()">reset color</button>
+
+        <div class="sprite-container invisible" id="sprite-container-template" onclick="chooseSprite(this)">
+            <div class="sprite-index"></div>
+            <div class="sprite" style="background: url(img/grid1.png) 0px 0px;"></div>
+            <div class="sprite-code">Freljord</div>
+        </div>
+
+    </div>
+
+    <!--<img class="full-grid" src="img/grid1.png">-->
+    <div id="grid">
+    </div>
+    <!--<img class="full-grid" src="img/grid2.png">-->
+</main>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/app.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
