@@ -27,7 +27,7 @@ var app = Vue.createApp({
             bonus : "message caché",
             defaultColor : "#ffffff",
             currentColor : "#ffffff",
-            currentSprite : betterNames[0],
+            currentSprite : JSON.parse(JSON.stringify(betterNames[0])),
             visible: false
         }
     },
@@ -40,6 +40,12 @@ var app = Vue.createApp({
             let colorShown = " color="+this.currentColor;
             let color = this.isColorValide()?colorHidden:colorShown;
             return `<${code}${color}>`;
+        },
+        getCurrentSpriteAndColor() {
+            if (undefined !== this.currentSprite) {
+                this.currentSprite.color = this.currentColor;
+            }
+            return this.currentSprite;
         }
     },
     methods:{
@@ -51,9 +57,13 @@ var app = Vue.createApp({
                 || this.currentColor==this.defaultColor
                 || this.currentSprite.index>=rawNames1.length);
         },
+        isColorable() {
+            return this.currentSprite.index < rawNames1.length;
+        },
         selectSprite(sprite) {
             console.log("received : "+sprite)
-            this.currentSprite = sprite;
+            this.resetColor();
+            this.currentSprite = JSON.parse(JSON.stringify(sprite));
         },
         resetColor() {
             this.currentColor = this.defaultColor;
@@ -70,7 +80,7 @@ var app = Vue.createApp({
 });
 
 app.component('sprite', {
-    props: ['sprite', 'currentColor'],
+    props: ['sprite'],
     emits: ['spriteselected'],
     data() {
         return {
@@ -78,12 +88,12 @@ app.component('sprite', {
     },
     computed:{
       getCurrentColor() {
-          return "white";
-          // return this.currentColor;
+          return this.sprite.color;
       }
     },
     methods:{
         selectSprite() {
+            // this.sprite.color=null;
             this.$emit('spriteselected', this.sprite);
         },
         isVisible() {
@@ -102,10 +112,9 @@ app.component('sprite', {
           return 'url(img/grid'+(this.getGrid(this.sprite.index))+'.png)';
         },
         getBGcolor() {
-            let result = (app.currentSprite!=null && this.sprite.index === app.currentSprite.index)?`red`:"";
-            console.log(result);
-          return result;
-          // return (this.sprite == app.currentSprite)?`${app.currentColor}`:"";
+            console.log(this.sprite);
+          return this.sprite.color;
+
         },
         getGrid() {
             let grid = 1;
@@ -119,18 +128,18 @@ app.component('sprite', {
     <div @click="selectSprite" class="sprite-container card" v-if="isVisible()" v-bind:title="sprite.indexNonNull">
 <!--        <div class="sprite-index"> {{sprite.indexNonNull}} </div>-->
         <div class="sprite-code" > {{sprite.code}} </div>
-<!--        <div class="sprite-mask" v-bind:style="{ -->
-<!--        'maskPosition': getMaskOffset(), -->
-<!--        '-webkitMaskPosition': getMaskOffset(),-->
-<!--        'backgroundColor': currentColor,-->
-<!--         'maskImage': getBGImage(),-->
-<!--         '-webkitMaskImage': getBGImage()-->
-<!--          }">-->
+        <div class="sprite-mask" v-bind:style="{ 
+        'maskPosition': getMaskOffset(), 
+        '-webkitMaskPosition': getMaskOffset(),
+        'backgroundColor': getCurrentColor,
+         'maskImage': getBGImage(),
+         '-webkitMaskImage': getBGImage()
+          }">
             <div class="sprite" v-bind:style="{ 'backgroundPositionX': getOffsetX(), 
             'backgroundPositionY': getOffsetY(),
              'backgroundImage': getBGImage(),
               }"></div>
-<!--          </div>-->
+          </div>
     </div>
     `
     // 'background-blend-mode': getBGBlend(),
