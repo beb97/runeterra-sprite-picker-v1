@@ -12,7 +12,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
 
-    <link rel="manifest" href="site.webmanifest">
+<!--    <link rel="manifest" href="site.webmanifest">-->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <!-- Place favicon.ico in the root directory -->
 
@@ -25,24 +25,25 @@
 <body>
 <main>
     <div id="logo-container">
-        <img id="logo" src="logo-runeterra.png"/><h1>Runeterra sprite picker</h1>
+        <img id="logo" src="logo-runeterra.png"/><h1>Sprite picker</h1>
     </div>
     <div id="app">
         <div id="currentSpriteBlock" class="flex">
             <div id="currentSpriteMask" class="card">
-                <sprite v-bind:sprite="currentSprite"></sprite>
+                <sprite v-bind:sprite="currentSprite" v-bind:currentColor="currentColor"></sprite>
+            </div>
+
+
+            <div id="color-picker-container" class="card flex" title="Only the first 24 sprites can be colored.">
+<!--                <div>💬</div>-->
+                <input type="color" v-model="currentColor"/>
+                <div>{{currentColor}}</div>
+                <button @click="resetColor">reset color</button>
             </div>
 
             <div id="sprite-to-text-block" class="card flex">
-                <div>Code : </div>
                 <h2>{{ getSpriteCode }}</h2>
                 <button @click="copyToClipBoard">copy to clipboard</button>
-            </div>
-            <div id="color-picker-container" class="card flex" title="Only the first 24 sprites can be colored.">
-                <div>💬</div>
-                <div t >{{currentColor}}</div>
-                <input type="color" v-model="currentColor"/>
-                <button @click="resetColor">reset color</button>
             </div>
         </div>
 

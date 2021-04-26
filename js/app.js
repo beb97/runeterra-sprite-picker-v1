@@ -70,15 +70,20 @@ var app = Vue.createApp({
 });
 
 app.component('sprite', {
-    props: ['sprite'],
+    props: ['sprite', 'currentColor'],
     emits: ['spriteselected'],
     data() {
         return {
         }
     },
+    computed:{
+      getCurrentColor() {
+          return "white";
+          // return this.currentColor;
+      }
+    },
     methods:{
         selectSprite() {
-            console.log("dont click me");
             this.$emit('spriteselected', this.sprite);
         },
         isVisible() {
@@ -90,20 +95,17 @@ app.component('sprite', {
         getOffsetY() {
             return '-'+(this.sprite.row * 128)+'px';
         },
+        getMaskOffset() {
+          return this.getOffsetX()+" "+this.getOffsetY();
+        },
         getBGImage() {
           return 'url(img/grid'+(this.getGrid(this.sprite.index))+'.png)';
         },
         getBGcolor() {
-          // return "red";
             let result = (app.currentSprite!=null && this.sprite.index === app.currentSprite.index)?`red`:"";
             console.log(result);
           return result;
           // return (this.sprite == app.currentSprite)?`${app.currentColor}`:"";
-        },
-        getBGBlend() {
-            return (this.sprite == app.currentSprite)?"multiply":"";
-            /*background-blend-mode: multiply;*/
-            /*mix-blend-mode: multiply;*/
         },
         getGrid() {
             let grid = 1;
@@ -117,13 +119,40 @@ app.component('sprite', {
     <div @click="selectSprite" class="sprite-container card" v-if="isVisible()" v-bind:title="sprite.indexNonNull">
 <!--        <div class="sprite-index"> {{sprite.indexNonNull}} </div>-->
         <div class="sprite-code" > {{sprite.code}} </div>
-        <div class="sprite" v-bind:style="{ 'backgroundPositionX': getOffsetX(), 
-        'backgroundPositionY': getOffsetY(),
-         'backgroundImage': getBGImage(),
-         'background-blend-mode': getBGBlend(),
-          'backgroundColor': getBGcolor() }"></div>
+<!--        <div class="sprite-mask" v-bind:style="{ -->
+<!--        'maskPosition': getMaskOffset(), -->
+<!--        '-webkitMaskPosition': getMaskOffset(),-->
+<!--        'backgroundColor': currentColor,-->
+<!--         'maskImage': getBGImage(),-->
+<!--         '-webkitMaskImage': getBGImage()-->
+<!--          }">-->
+            <div class="sprite" v-bind:style="{ 'backgroundPositionX': getOffsetX(), 
+            'backgroundPositionY': getOffsetY(),
+             'backgroundImage': getBGImage(),
+              }"></div>
+<!--          </div>-->
     </div>
     `
+    // 'background-blend-mode': getBGBlend(),
+    // 'backgroundColor': getBGcolor()
 })
 
 app.mount('#app');
+
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {toogleStickyness()};
+
+// Get the header
+var header = document.getElementById("currentSpriteBlock");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function toogleStickyness() {
+    if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+    } else {
+        header.classList.remove("sticky");
+    }
+}
