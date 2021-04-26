@@ -152,6 +152,11 @@ main {
   margin-bottom: 15px;
 }
 
+/* cible #grid lorsque le sibbling précédent est ".sticky" */
+.sticky + #grid {
+  padding-top: 210px;
+}
+
 .card {
   border-radius: 5px;
   margin: 5px;
