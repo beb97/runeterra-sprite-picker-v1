@@ -25,7 +25,12 @@
 <body>
 <main>
     <div id="logo-container">
-        <img id="logo" src="logo-runeterra.png"/><h1>Sprite picker</h1>
+        <img alt="runeterra logo" id="logo" src="logo-runeterra.png"/>
+        <div class="flex vertical">
+         <h1>Sprite picker</h1>
+            <div><span class="pretty">Prettify</span> your deck's name  ! </div>
+
+        </div>
     </div>
     <div id="app">
         <div id="currentSpriteBlock" class="flex">
@@ -44,8 +49,9 @@
             </div>
 
             <div id="sprite-to-text-block" class="card flex">
-                <h2>{{ getSpriteCode }}</h2>
+                <h3>{{ getSpriteCode }}</h3>
                 <button @click="copyToClipBoard">copy to clipboard</button>
+                <div class="text-small">And paste in your deck's name</div>
             </div>
         </div>
 
